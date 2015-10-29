@@ -83,8 +83,11 @@ typedef union{
 }tcp_flags;
 
 typedef struct{
-	unsigned int   padding:8,
-				   options:24;
+	struct{
+		unsigned int   padding:8,
+					   options:24;
+	} fields;
+	unsigned int bits;
 }tcp_options_padding;
 
 typedef struct {
