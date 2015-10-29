@@ -105,6 +105,8 @@ int main(void) {
 	printf("Checksum - %02x\n",convertShortToBigEndian(nagl_eth_ip_icmp.icmp.checksum));
 	printf("Identifier       - %d (0x%02x)\n",nagl_eth_ip_icmp.icmp.identifier,nagl_eth_ip_icmp.icmp.identifier);
 	printf("Sequence Number  - %d (0x%02x)\n",nagl_eth_ip_icmp.icmp.seq_number,nagl_eth_ip_icmp.icmp.seq_number);
+
+
 	eth_ip_udp_packet UDP;
 	unsigned int udp_size = sizeof(eth_ip_udp_packet);
 	memcpy(&UDP,&bufor_eth_ip_udp,udp_size);
@@ -141,9 +143,9 @@ int main(void) {
 
 	eth_ip_tcp_packet TCP;
 	unsigned int tcp_size = sizeof(eth_ip_tcp_packet);
-	memcpy(&TCP,&bufor_eth_ip_tcp,tcp_size);
-	TCP.ip4.flags.bits = convertShortToBigEndian(TCP.ip4.flags.bits);
-
+//	memcpy(&TCP,&bufor_eth_ip_tcp,tcp_size);
+//	TCP.ip4.flags.bits = convertShortToBigEndian(TCP.ip4.flags.bits);
+	convert_raw_to_tcp_packet(&TCP,&bufor_eth_ip_tcp,tcp_size);
 
 
 
@@ -171,6 +173,20 @@ int main(void) {
 	printf("\n\nTCP\n\n");
 	printf("Port Nadawcy   - %d\n", convertShortToBigEndian(TCP.tcp.source_port));
 	printf("Port Odbiorcy  - %d\n", convertShortToBigEndian(TCP.tcp.destination_port));
+	printf("Sequence Number- 0x%02x\n",TCP.tcp.sequence_number,TCP.tcp.sequence_number);
+	printf("ACK            - 0x%02x\n",TCP.tcp.ack,TCP.tcp.ack);
+	printf("Data Offset    - 0x%02x\n",TCP.tcp.flags.fields.data_offset);
+	printf("Reserved       - 0x%02x\n",TCP.tcp.flags.fields.reserved);
+	printf("Control Bits   - 0x%02x\n",TCP.tcp.flags.fields.control_bits);
+	printf("Window     - 0x%04x\n",TCP.tcp.window);
+	printf("Checksum   - 0x%02x\n",TCP.tcp.checksum);
+	printf("Urgent Pointer - 0x%04x\n",TCP.tcp.urgent_pointer);
+
+
+
+
+
+
 
 	return EXIT_SUCCESS;
 }

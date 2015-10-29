@@ -73,10 +73,13 @@ typedef struct {
 }udp_frame;
 
 
-typedef struct{
-	unsigned short control_bits:6,
-				   reserved    :6,
-				   data_offset :4;
+typedef union{
+	struct {
+		unsigned short control_bits:6,
+				   	   reserved    :6,
+					   data_offset :4;
+		}fields;
+	unsigned short bits;
 }tcp_flags;
 
 typedef struct{
@@ -93,8 +96,7 @@ typedef struct {
 	unsigned short window;
 	unsigned short checksum;
 	unsigned short urgent_pointer;
-
-
+	tcp_options_padding options_padding;
 }tcp_frame;
 
 typedef struct {
