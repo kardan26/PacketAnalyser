@@ -28,11 +28,58 @@ typedef struct{
 
 }arp_frame;
 
+typedef struct {
+	unsigned char IHL:4,
+				  version:4;
+
+} ip_version_length;
+
+typedef struct {
+	unsigned short fragment_offset:13,
+				   flags:3;
+}ip_flags_and_offset;
+
+typedef struct {
+	ip_version_length ver_leng;
+	unsigned char type_of_service;
+	unsigned short total_length;
+	unsigned short identification;
+	ip_flags_and_offset flags;
+	unsigned char time_to_live;
+	unsigned char protocol;
+	unsigned short header_checksum;
+	unsigned char src_ip[4];
+	unsigned char dst_ip[4];
+}ip_frame;
+
+typedef struct {
+	unsigned char type;
+	unsigned char code;
+	unsigned short checksum;
+	unsigned int data;
+
+}icmp_frame;
+
+typedef struct {
+	unsigned char source_port[2];
+	unsigned char destination_port[2];
+	unsigned char length[2];
+	unsigned char checksum[2];
+}udp_frame;
 
 typedef struct {
 	ethernet2_frame eth2;
 	arp_frame arp;
 	unsigned char data[1476]; //1500-24
 } eth_arp_packet;
+
+typedef struct {
+	ethernet2_frame eth2;
+	ip_frame ip4;
+	icmp_frame icmp;
+	unsigned char data[1472];
+
+
+}eth_ip_icmp_packet;
 
 #endif /* NAGLOWKI_H_ */
