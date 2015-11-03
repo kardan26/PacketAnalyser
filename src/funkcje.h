@@ -25,4 +25,9 @@ void print_tcp(eth_ip_tcp_packet TCP);
 unsigned int convertIntToBigEndian(unsigned int data);
 unsigned short convertShortToBigEndian(unsigned short data);
 
+
+
+
+
+
 #endif /* FUNKCJE_H_ */
