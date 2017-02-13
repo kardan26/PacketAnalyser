@@ -156,8 +156,8 @@ void print_tcp(eth_ip_tcp_packet TCP){
 	printf("\n\nTCP\n\n");
 	printf("Port Nadawcy   - %d\n", TCP.tcp.source_port);
 	printf("Port Odbiorcy  - %d\n", TCP.tcp.destination_port);
-	printf("Sequence Number- 0x%02x\n",TCP.tcp.sequence_number,TCP.tcp.sequence_number);
-	printf("ACK            - 0x%02x\n",TCP.tcp.ack,TCP.tcp.ack);
+	printf("Sequence Number- 0x%02x\n",TCP.tcp.sequence_number);
+	printf("ACK            - 0x%02x\n",TCP.tcp.ack);
 	printf("Data Offset    - 0x%02x\n",TCP.tcp.flags.fields.data_offset);
 	printf("Reserved       - 0x%02x\n",TCP.tcp.flags.fields.reserved);
 	printf("Control Bits   - 0x%02x\n",TCP.tcp.flags.fields.control_bits);
