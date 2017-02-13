@@ -1,1 +1,1 @@
-# Simple network packet analyzer
+# Simple network packet analyser
